@@ -6,18 +6,28 @@ class Task {
   }
 
   display() {
-    let taskEl = document.createElement('div');
-    taskEl.innerHTML = `
+    this.element = document.createElement('div');
+    this.element.innerHTML = this.render()
+    return this.element
+  }
+
+  update(description, priority) {
+    this.description = description;
+    this.priority = priority;
+    this.element.innerHTML = this.render()
+  }
+
+  render() {
+    return `
     <p>
       ${this.description} 
       [<span style="color: ${this.priorityColor(this.priority)}">
       ${this.priority} priority
       </span>]
-      <button data-id=${this.id} style="font-size: 12px">Delete</button>
+      <button class="delete" data-id=${this.id}>Delete</button>
+      <button class="edit" data-id=${this.id}>Edit</button>
     </p>
     `
-    this.element = taskEl;
-    return taskEl;
   }
 
   remove() {

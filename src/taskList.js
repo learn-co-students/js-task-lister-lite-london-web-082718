@@ -7,13 +7,37 @@ class TaskList {
     this.displayTask(task);
   }
 
-  static displayAll() {
-    this.tasks.forEach(task => this.displayTask(task));
+  static displayAll(sort=false) {
+    this.tasks.forEach(task => task.remove())
+    if (sort===false) {
+      this.tasks.forEach(task => this.displayTask(task));
+    } else {
+      this.sortAll(sort).forEach(task => this.displayTask(task));
+    }
+  }
+
+  static sortAll(order) {
+    let lookUp = {
+      high: 3,
+      medium: 2,
+      low: 1
+    }
+    return this.tasks.slice().sort( (a, b) => {
+      if (order==='asc') {
+        return lookUp[a.priority] - lookUp[b.priority];
+      } else {
+        return lookUp[b.priority] - lookUp[a.priority];
+      }
+    })
   }
 
   static displayTask(task) {
     let taskEl = task.display();
     taskList.appendChild(taskEl);
+  }
+
+  static findTask(id) {
+    return this.tasks.find(task => task.id === id);
   }
 
   static deleteTask(id) {
@@ -26,6 +50,8 @@ class TaskList {
       return true;
     }
   }
+
+  static editFormToggle() {}
 }
 
 TaskList.tasks = [];
