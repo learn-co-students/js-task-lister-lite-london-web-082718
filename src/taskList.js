@@ -50,8 +50,7 @@ class TaskList {
       return true;
     }
   }
-
-  static editFormToggle() {}
+  
 }
 
 TaskList.tasks = [];

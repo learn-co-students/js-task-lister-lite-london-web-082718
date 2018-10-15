@@ -11,6 +11,9 @@ const editPriority = document.querySelector("#edit-priority")
 const editId = document.querySelector("#editId")
 const cancelBtn = document.querySelector("#cancel")
 
+const mainBoxEl = document.querySelector("#list")
+const spin = document.querySelector("#spin")
+
 document.addEventListener("DOMContentLoaded", () => {
 
   formEl.addEventListener('submit', event => {
@@ -43,6 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cancelBtn.addEventListener('click', event => 
     editFormToggle()
+  )
+
+  spin.addEventListener('click', event =>
+    spinOut(0)
   )
 
   TaskList.newTask("Complete Task Lister Lite project", "high")
@@ -82,6 +89,13 @@ function editFormToggle() {
     editId.value = 'none';
     editForm.reset();
     editForm.style.display = 'none';
+  }
+}
+
+function spinOut(degree=0) {
+  if (degree !== 361) {
+    mainBoxEl.style.setProperty("-webkit-transform", `rotate(${degree}deg)`, null);
+    setTimeout(() => spinOut(degree + 1), 0.5)
   }
 }
 
