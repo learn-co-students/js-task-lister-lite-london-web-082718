@@ -12,6 +12,12 @@
     <form id="create-task-form" action="#" method="post">
       <label for="new-task-description">Task description:</label>
       <input type="text" id="new-task-description" name="new-task-description" placeholder="description">
+      <label for="priority">Priority:</label>
+      <select id="priority">
+        <option value="high">High</option>
+        <option value="medium" selected>Medium</option>
+        <option value="low">Low</option>
+      </select>
       <input type="submit" value="Create New Task">
     </form>
 
@@ -20,6 +26,34 @@
       <ul id="tasks">
       </ul>
     </div>
+
+    <div style="display: inline">
+      Sort by priority: 
+      <select id="sort-order">
+        <option value="desc">Descending</option>
+        <option value="asc">Ascending</option>
+      </select>
+      <button id="sort">Sort</button>
+    </div>
+
+    
+    <br>
+    <form id="edit-task-form" action="#" method="post" style="display: none">
+      <label for="edit-task-description">Task description:</label>
+      <input type="text" id="edit-task-description" name="edit-task-description" placeholder="description">
+      <label for="edit-priority">Priority:</label>
+      <select id="edit-priority">
+        <option value="high">High</option>
+        <option value="medium" selected>Medium</option>
+        <option value="low">Low</option>
+      </select>
+      <input type="hidden" id='editId' value="none">
+      <input type="submit" value="Update Task">
+      <button id="cancel" type="button">Cancel</button>
+    </form>
+    <br>
+    <button id="spin">Go for a spin</button>
+
 
     <script src="./src/oo_index.js"></script>
     <script src="./src/taskList.js"></script>
